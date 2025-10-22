@@ -12,7 +12,7 @@ export default function ItemList() {
     const res = await axios.get(Api_base_url);
     setItems(res.data);
   };
-
+ 
   const addItem = async () => {
     if (name.trim()) {
       await axios.post(Api_base_url, { name });
