@@ -2,24 +2,27 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ItemList() {
+
+  const Api_base_url="http://15.207.223.137:3000/api/items";
+
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
 
   const fetchItems = async () => {
-    const res = await axios.get("http://localhost:3000/api/items");
+    const res = await axios.get(Api_base_url);
     setItems(res.data);
   };
 
   const addItem = async () => {
     if (name.trim()) {
-      await axios.post("http://localhost:3000/api/items", { name });
+      await axios.post(Api_base_url, { name });
       setName("");
       fetchItems();
     }
   };
 
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:3000/api/items/${id}`);
+    await axios.delete(`${Api_base_url}/${id}`);
     fetchItems();
   };
 
