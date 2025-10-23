@@ -1,0 +1,24 @@
+backend in -> 3 parts -> models, utils, routes 
+
+chat models schema will have -> store history -> thread collection -> 1 individual chat sequence -> threadSchema 
+threadId , title, response messagees (along with role (enum[assistant  model or user] )), created at , updated at ,  so that we can sort the chats based on this date time of creation on sidebar  most recent message at top will be shown 
+
+message schema 
+content , role -> user or assistant , timestamp 
+
+routes -> api endpoints information 
+
+get /thread             ->all thread return  sort on basis of updated at time most recent chat at top 
+
+get /thread/:threadId.  ->  return particular thread 
+
+delete  /thread/:threadId 
+
+post /chat   (mesage  + reply ) pair 
+
+check is threadId -> exit or newly created -> validate threadId,message 
+ if threadId is not in db -> create a new thread 
+
+1)save the message (user) in thread first 
+2)  then get response from open ai apis 
+3) then store this response reply from assistant u got in that same threadId 
